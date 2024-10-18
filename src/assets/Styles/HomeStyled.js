@@ -23,8 +23,7 @@ export const ImageLogo = styled.img`
     height: auto; 
     max-width: 100%; 
     display: block;
-    margin-bottom: 20%;
-    
+    margin-bottom: 20%; 
 `
 export const Welcome = styled.p`
     align-self: flex-end; 
@@ -43,5 +42,4 @@ export const EnterButton = styled.button`
     color: #ffffff;
     border-radius: 5px;
     cursor: pointer;
-
 `

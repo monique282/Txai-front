@@ -13,6 +13,8 @@ export default function Home() {
       <WelcomeLogoButton>
         <Welcome>Bem-vindo!</Welcome>
         <ImageLogo src={Logo} alt="Logo da Txai" />
-        <EnterButton onClick={enterClickLogin}>Entrar</EnterButton>      </WelcomeLogoButton>
-    </ All>);
+        <EnterButton onClick={enterClickLogin}>Entrar</EnterButton>
+      </WelcomeLogoButton>
+    </ All>
+    );
 }
