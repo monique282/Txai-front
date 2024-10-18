@@ -1,32 +1,17 @@
 import { useState } from "react";
 import { All, WelcomeLogoButton, Title, CpfSenha, InputCpfSenha, RememberForgot, Label, NoRegistrationIf, PrivacyPolicy, EnterButton } from "../assets/Styles/LoginStyled";
-import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import LoginHandler from "../components/LoginRequest";
 
 export default function Login() {
     const [cpf, setCpf] = useState('');
     const [password, setPassword] = useState('');
     const [remember, setRemember] = useState(false);
-    const navigate = useNavigate();
+
+    const { handleLoginClick } = LoginHandler({ cpf, setCpf, password, setPassword, remember, setRemember });
 
     const rememberChange = () => {
         setRemember(!remember);
     };
-
-    async function handleLoginClick() {
-        const urlRequest = `${process.env.REACT_APP_API_URL}/user`;
-        const data = { cpf, password };
-        try {
-            const response = await axios.post(urlRequest, data);
-            navigate("/");
-        } catch (err) {
-            if (err.response) {
-                alert(err.response.data.message);
-            } else {
-                alert("Ocorreu um erro ao tentar fazer o login.");
-            }
-        }
-    }
 
     return (
         <All>
@@ -38,20 +23,18 @@ export default function Login() {
                     placeholder="Insira seu CPF, somente números"
                     value={cpf}
                     onChange={(e) => {
-                        const onlyNumbers = e.target.value.replace(/\D/g, ''); 
+                        const onlyNumbers = e.target.value.replace(/\D/g, '');
                         setCpf(onlyNumbers);
                     }}
                     inputMode="numeric"
-                >
-                </InputCpfSenha>
+                />
                 <CpfSenha>Senha</CpfSenha>
                 <InputCpfSenha
                     className="value-rule"
                     placeholder="Insira sua senha"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                >
-                </InputCpfSenha>
+                />
                 <EnterButton onClick={async () => {
                     handleLoginClick();
                 }}>Entrar</EnterButton>
