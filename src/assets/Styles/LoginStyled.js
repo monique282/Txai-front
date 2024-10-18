@@ -44,7 +44,15 @@ export const InputCpfSenha = styled.input`
         box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
     }
 `;
-
+export const EnterButton = styled.button`
+    width: 100%; 
+    height: 40px;
+    background-color: #579191;
+    border: none;
+    color: #ffffff;
+    border-radius: 5px;
+    cursor: pointer;
+`;
 export const RememberForgot = styled.div`
     width: 100%; 
     height: 30px; 
