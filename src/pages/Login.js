@@ -7,7 +7,7 @@ export default function Login() {
     const [password, setPassword] = useState('');
     const [remember, setRemember] = useState(false);
 
-    const { handleLoginClick } = LoginHandler({ cpf, setCpf, password, setPassword, remember, setRemember });
+    const { LoginClick } = LoginHandler({ cpf, setCpf, password, setPassword, remember, setRemember });
 
     const rememberChange = () => {
         setRemember(!remember);
@@ -36,7 +36,7 @@ export default function Login() {
                     onChange={(e) => setPassword(e.target.value)}
                 />
                 <EnterButton onClick={async () => {
-                    handleLoginClick();
+                    LoginClick();
                 }}>Entrar</EnterButton>
                 <RememberForgot>
                     <Label>
