@@ -42,5 +42,6 @@ export const EnterButton = styled.button`
     border: none;
     color: #ffffff;
     border-radius: 5px;
+    cursor: pointer;
 
 `
