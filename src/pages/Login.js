@@ -9,7 +9,7 @@ export default function Login() {
     const [password, setPassword] = useState('');
     const [remember, setRemember] = useState(false);
     const navigate = useNavigate();
-    const {setToken} = useContext(AuthContext)
+    const { setToken, setName, setList } = useContext(AuthContext)
 
     useEffect(() => {
         const savedCpf = localStorage.getItem('cpf');
@@ -37,14 +37,34 @@ export default function Login() {
                 localStorage.removeItem('password');
                 localStorage.removeItem('remember');
             }
-            console.log(response.data[1].token)
+
             setToken(response.data[1].token)
+            setName(response.data[0].nameUser)
+            getTheList()
             navigate("/");
         } catch (err) {
             if (err.response) {
                 alert(err.response.data.message);
             } else {
                 alert("Ocorreu um erro ao tentar fazer o login.");
+            }
+        }
+    };
+
+    const getTheList = async () => {
+        const urlRequest = `${process.env.REACT_APP_API_URL}/books`;
+        try {
+            const response = await axios.get(urlRequest);
+            if (!response) {
+                alert("Ocorreu um erro ao tentar buscar os produtos.");
+            } 
+            console.log(response)
+            setList(response.data)
+        } catch (err) {
+            if (err.response) {
+                alert(err.response.data.message);
+            } else {
+                alert("Ocorreu um erro ao tentar buscar os produtos.");
             }
         }
     };
@@ -89,7 +109,7 @@ export default function Login() {
                     </Label>
                     <a href="/" style={{ color: '#2f7171', textDecoration: 'none', fontSize: '15px' }} ><h1>Esqueci minha senha</h1></a>
                 </RememberForgot>
-                <NoRegistrationIf>Não tem uma conta? <a href="/" style={{ color: '#2f7171', textDecoration: 'none', fontSize: '13px' }} >cadastre-se agora</a></NoRegistrationIf>
+                <NoRegistrationIf>Não tem uma conta? <a href="/register" style={{ color: '#2f7171', textDecoration: 'none', fontSize: '13px' }} >cadastre-se agora</a></NoRegistrationIf>
                 <PrivacyPolicy>Ajuda ° Política de privacidade</PrivacyPolicy>
             </WelcomeLogoButton>
         </ All>

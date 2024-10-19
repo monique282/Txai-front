@@ -1,20 +1,34 @@
-import { useNavigate } from "react-router-dom";
-import { All, EnterButton, ImageLogo, Welcome, WelcomeLogoButton } from "../assets/Styles/HomeStyled";
-import Logo from "../assets/images/logo.png"
+
 
 export default function Home() {
-  const navigate = useNavigate();
 
-  const enterClickLogin = () => {
-    navigate("/login");
-  };
-  return (
-    <All>
-      <WelcomeLogoButton>
-        <Welcome>Bem-vindo!</Welcome>
-        <ImageLogo src={Logo} alt="Logo da Txai" />
-        <EnterButton onClick={enterClickLogin}>Entrar</EnterButton>
-      </WelcomeLogoButton>
-    </ All>
+
+    return (<>
+        <>logo e menu lateral suporte calendario icone notificaçãp perfil</>
+        <>menu home gestão e controle</>
+        <>titulo controle</>
+        <> cadastrar novo produto</>
+
+        <>
+            <>mar recente de a a z</>
+            <>mostrtar rsultado</>
+            <>quantodade de paginas</>
+        </>
+        <>
+            <>data de cadastro</>
+            <>nome</>
+            <>valor</>
+            <>quantidade</>
+            <>valor total</>
+            <>configuração e lixeira</>
+        </>
+        <>
+            <>mostrtar rsultado</>
+            <>quantodade de paginas</>
+        </>
+        <>rodape</>
+    </>
+
+
     );
 }
