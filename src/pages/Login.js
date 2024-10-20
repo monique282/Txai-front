@@ -3,6 +3,7 @@ import { All, WelcomeLogoButton, Title, CpfSenha, InputCpfSenha, RememberForgot,
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { AuthContext } from "../contex/authContex";
+import getAllBooks from "../components/AllBooks";
 
 export default function Login() {
     const [cpf, setCpf] = useState('');
@@ -40,32 +41,13 @@ export default function Login() {
 
             setToken(response.data[1].token)
             setName(response.data[0].nameUser)
-            getTheList()
+            getAllBooks(setList)
             navigate("/");
         } catch (err) {
             if (err.response) {
                 alert(err.response.data.message);
             } else {
                 alert("Ocorreu um erro ao tentar fazer o login.");
-            }
-        }
-    };
-
-    const getTheList = async () => {
-        const urlRequest = `${process.env.REACT_APP_API_URL}/books`;
-        try {
-            const response = await axios.get(urlRequest);
-            if (!response || !response.data || response.data.length === 0) {
-                alert("Ocorreu um erro ao tentar buscar os produtos. monique");
-            } else{
-                setList(response.data)
-            }
-        } catch (err) {
-            console.error("Erro no getTheList:", err);
-            if (err.response) {
-                alert(err.response.data.message);
-            } else {
-                alert("Ocorreu um erro ao tentar buscar os produtos.");
             }
         }
     };
