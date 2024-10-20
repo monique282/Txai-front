@@ -3,13 +3,13 @@ import { RiDeleteBin6Fill } from "react-icons/ri";
 import { AiOutlineClose } from "react-icons/ai";
 import { ModalContainer, Overlay, Button } from "../assets/Styles/ModalDelet";
 
-export default function Modal({ onConfirm, onCancel }) {
+export default function modalDete({ onConfirm, onCancel }) {
     return (
         <Overlay>
             <ModalContainer>
                 <div
                     style={{ display: "flex", justifyContent: "flex-end", marginRight: "15px", cursor: "pointer" }}
-                    onClick={onCancel} // Aqui você estava passando onCancel sem executar
+                    onClick={onCancel} 
                 >
                     <AiOutlineClose />
                 </div>

@@ -42,7 +42,6 @@ export default function Login() {
             setToken(response.data[1].token)
             setName(response.data[0].nameUser)
             setId(response.data[0].id)
-            console.log(response.data)
             getAllBooks(setList)
             navigate("/");
         } catch (err) {

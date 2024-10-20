@@ -15,26 +15,42 @@ import PaginationHome from "../components/Pagination";
 import Footer from "../assets/images/footer.png"
 import ModalDete from "../components/ModalDelete"
 import confirmDelete from "../components/ConfirmDelete";
+import ManageProducts from "../components/ManageProducts";
+import Box3Home from "../components/Box3Home";
 
 export default function Home() {
     const { list, id, token, setList } = useContext(AuthContext);
     const [currentPage, setCurrentPage] = useState(1);
     const [itemToDelete, setItemToDelete] = useState(null);
-    const [showModal, setShowModal] = useState(false);
-
+    const [showModalDelete, setShowModalDelete] = useState(false);
+    const [showModalManagementProducts, setShowModalManagementProducts] = useState(false);
+    const [selectedItem, setSelectedItem] = useState(null);
     const itemsPerPage = 10;
     const indexOfLastItem = currentPage * itemsPerPage;
     const indexOfFirstItem = indexOfLastItem - itemsPerPage;
     const currentItems = list.slice(indexOfFirstItem, indexOfLastItem);
 
+    // abir a lixeira
     const handleDeleteClick = (item) => {
-        setItemToDelete(item); 
-        setShowModal(true);
+        setItemToDelete(item);
+        setShowModalDelete(true);
+    };
+    // fechar a licheira
+    const cancelDelete = () => {
+        setShowModalDelete(false);
+        setItemToDelete(null);
     };
 
-    const cancelDelete = () => {
-        setShowModal(false); 
-        setItemToDelete(null); 
+    // abrir a engrenagem
+    const handleGearClick = (item) => {
+        setSelectedItem(item);
+        setShowModalManagementProducts(true);
+    };
+
+    // fechar enfrenagem
+    const closeManageModal = () => {
+        setShowModalManagementProducts(false);
+        setSelectedItem(null);
     };
 
     return (
@@ -53,49 +69,21 @@ export default function Home() {
             </TitleControl>
             <RegisterProduct >+ Cadastrar novo produto</RegisterProduct>
             <Box2Home currentPage={currentPage} setCurrentPage={setCurrentPage} />
-            <Box3>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Data de Cadastro</th>
-                            <th style={{ width: '150px' }} >Nome</th>
-                            <th>Valor</th>
-                            <th>Quantidade</th>
-                            <th>Valor Total</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {currentItems.map((item, index) => (
-                            <tr key={index}>
-                                <td>{DayAndMonthAndYear(item.createdAt)}</td>
-                                <td >{item.name}</td>
-                                <td>{FormatToReal(item.value)}</td>
-                                <td>{item.amount}</td>
-                                <td>{FormatToReal(item.value * item.amount)}</td>
-                                <td>
-                                    <ConfigurationRecycleBin>
-                                        {item.userId === id && (
-                                            <>
-                                                <FaGear style={{ color: "black", marginRight: "20px" }} />
-                                                <RiDeleteBin6Fill
-                                                    style={{ color: "red", cursor: "pointer" }}
-                                                    onClick={() => handleDeleteClick(item.id)}
-                                                />
-                                            </>
-                                        )}
-                                    </ConfigurationRecycleBin>
-                                </td>
-                            </tr>
-                        ))}
-                    </tbody>
-                </table>
-            </Box3>
-            {showModal && (
+            <Box3Home currentItems={currentItems} handleGearClick={handleGearClick} handleDeleteClick={handleDeleteClick} id={id} />
+            {showModalDelete && (
                 <ModalDete
                     message="Tem certeza que deseja deletar este item?"
-                    onConfirm={() => confirmDelete({ itemToDelete, token, setShowModal, setItemToDelete, setList })}
+                    onConfirm={() => confirmDelete({ itemToDelete, token, setShowModalDelete, setItemToDelete, setList })}
                     onCancel={() => cancelDelete({})} >
                 </ModalDete>
+            )}
+            {showModalManagementProducts && (
+                <ManageProducts
+                    item={selectedItem}
+                    token={token}
+                    setList={setList}
+                    onClose={() => closeManageModal({})}
+                />
             )}
             <QuantityPages>
                 <PaginationHome currentPage={currentPage} setCurrentPage={setCurrentPage} />

@@ -8,7 +8,6 @@ export default function PasitionHome({currentPage, setCurrentPage}) {
     const totalPages = Math.ceil(list.length / itemsPerPage);
     const pageClick = (pageNumber) => {
         setCurrentPage(pageNumber);
-        console.log(currentPage)
     };
     
     const previousClick = () => {

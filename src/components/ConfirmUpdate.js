@@ -1,22 +1,19 @@
 import axios from "axios";
 import getAllBooks from "./AllBooks";
 
-export default async function confirmDelete({ itemToDelete, token, setShowModalDelete, setItemToDelete,setList }) {
+export default async function confirmUpdate({token, id , onClose, updatedProduct, setList}) {
 
     try {
-        const urlRequest = `${process.env.REACT_APP_API_URL}/booksdelet/${itemToDelete}`;
+        const urlRequest = `${process.env.REACT_APP_API_URL}/booksupdate/${id}`;
         const config = {
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${token}`,
-            }
+            },
         };
-
-        const response = await axios.delete(urlRequest, config);
-
+        const response = await axios.put(urlRequest, updatedProduct, config);
         if (response.status === 200) {
-            setShowModalDelete(false); 
-            setItemToDelete(null); 
+            onClose()
             getAllBooks(setList)
         } else {
             console.error('Erro ao deletar item', response.data);
