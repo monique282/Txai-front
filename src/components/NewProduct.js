@@ -1,36 +1,29 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { AiOutlineClose } from "react-icons/ai";
 import { Overlay, ButtonCancel, AiOutlineCloseTitle, GrupLabel, ButtonContainer, ButtonUpdate, 
 Container, FormGroup, Input, Label, QuantityButton, QuantityContainer, Title } from '../assets/Styles/ManageProductsStyled';
-import confirmUpdate from './ConfirmUpdate';
+import RegisterNewProduct from './RegisterNewProduct';
 
-const ManageProducts = ({ item, onClose, token , setList}) => {
-  const [quantity, setQuantity] = useState(item ? item.amount : 1);
-  const [nameTitle, setNameTitle] = useState(item ? item.name : '');
-  const [value, setValue] = useState(item ? item.value : '');
-  const [createdAt, setCreatedAt] = useState(item ? item.createdAt : new Date().toISOString().split('T')[0]);
+const NewProduct = ({ id, token, setList , onClose}) => {
 
-  useEffect(() => {
-    if (item) {
-      setNameTitle(item.name);
-      setValue(item.value);
-      setQuantity(item.amount);
-      setCreatedAt(item.createdAt);
-    }
-  }, [item]);
+  const [quantity, setQuantity] = useState(1);
+  const [nameTitle, setNameTitle] = useState();
+  const [value, setValue] = useState();
+  const [createdAt, setCreatedAt] = useState(new Date().toISOString().split('T')[0]);
+
 
   const handleIncrement = () => setQuantity((prevQuantity) => prevQuantity + 1);
   const handleDecrement = () => setQuantity((prevQuantity) => (prevQuantity > 1 ? prevQuantity - 1 : 1));
 
   const handleSubmit = () => {
-    const updatedProduct = {
+    const newProduct = {
       name: nameTitle,
       value: parseFloat(value.replace('R$', '').replace(',', '.')), 
       amount: quantity,
-      createdAt,
+      userId: id
     };
-    confirmUpdate({token, id:item.id, onClose, updatedProduct, setList})
-    ;
+    RegisterNewProduct({token, onClose, newProduct, setList})
+    
   };
 
   return (
@@ -93,4 +86,4 @@ const ManageProducts = ({ item, onClose, token , setList}) => {
   );
 };
 
-export default ManageProducts;
+export default NewProduct;

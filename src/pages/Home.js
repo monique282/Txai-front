@@ -17,6 +17,7 @@ import ModalDete from "../components/ModalDelete"
 import confirmDelete from "../components/ConfirmDelete";
 import ManageProducts from "../components/ManageProducts";
 import Box3Home from "../components/Box3Home";
+import NewProduct from "../components/NewProduct";
 
 export default function Home() {
     const { list, id, token, setList } = useContext(AuthContext);
@@ -25,6 +26,7 @@ export default function Home() {
     const [showModalDelete, setShowModalDelete] = useState(false);
     const [showModalManagementProducts, setShowModalManagementProducts] = useState(false);
     const [selectedItem, setSelectedItem] = useState(null);
+    const [showNewProduct, setShowNewProduct] = useState(false);
     const itemsPerPage = 10;
     const indexOfLastItem = currentPage * itemsPerPage;
     const indexOfFirstItem = indexOfLastItem - itemsPerPage;
@@ -53,6 +55,16 @@ export default function Home() {
         setSelectedItem(null);
     };
 
+    //fechar novos produtos
+    const closeModalNewProduct = () => {
+        setShowNewProduct(false)
+    };
+
+    //abrir novos podutos
+    const HaldleNewProduct = () => {
+        setShowNewProduct(true)
+    };
+
     return (
         <All>
             <Box1Home />
@@ -67,7 +79,7 @@ export default function Home() {
                 <p>Controle de Estoque</p>
                 <div className="underline"></div>
             </TitleControl>
-            <RegisterProduct >+ Cadastrar novo produto</RegisterProduct>
+            <RegisterProduct onClick={() => HaldleNewProduct()} >+ Cadastrar novo produto</RegisterProduct>
             <Box2Home currentPage={currentPage} setCurrentPage={setCurrentPage} />
             <Box3Home currentItems={currentItems} handleGearClick={handleGearClick} handleDeleteClick={handleDeleteClick} id={id} />
             {showModalDelete && (
@@ -84,6 +96,14 @@ export default function Home() {
                     setList={setList}
                     onClose={() => closeManageModal({})}
                 />
+            )}
+            {showNewProduct && (
+                <NewProduct
+                id={id}
+                token={token}
+                setList={setList}
+                onClose={() => closeModalNewProduct({})}
+            />
             )}
             <QuantityPages>
                 <PaginationHome currentPage={currentPage} setCurrentPage={setCurrentPage} />
