@@ -55,12 +55,14 @@ export default function Login() {
         const urlRequest = `${process.env.REACT_APP_API_URL}/books`;
         try {
             const response = await axios.get(urlRequest);
-            if (!response) {
-                alert("Ocorreu um erro ao tentar buscar os produtos.");
-            } 
-            console.log(response)
-            setList(response.data)
+            if (!response || !response.data || response.data.length === 0) {
+                alert("Ocorreu um erro ao tentar buscar os produtos. monique");
+            } else{
+                console.log("aqui",response)
+                setList(response.data)
+            }
         } catch (err) {
+            console.error("Erro no getTheList:", err);
             if (err.response) {
                 alert(err.response.data.message);
             } else {

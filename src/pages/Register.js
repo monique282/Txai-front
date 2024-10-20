@@ -28,7 +28,7 @@ export default function Register() {
         if (file) {
             const reader = new FileReader();
             reader.onloadend = () => {
-                setPhoto(reader.result); 
+                setPhoto(reader.result);
             };
             reader.readAsDataURL(file);
         }
@@ -44,7 +44,7 @@ export default function Register() {
                 const data = {
                     name, cpf, email, nameUser, password,
                     administrator: administrator,
-                    photo: photo ? photo : null 
+                    photo: photo ? photo : null
                 }
                 const response = await axios.post(urlRequest, data);
                 if (response.status !== 201) {
@@ -83,10 +83,10 @@ export default function Register() {
                 </div>
                 <UploadPhotoContainer>
                     {photo !== 0 && (
-                        // eslint-disable-next-line jsx-a11y/alt-text
                         <img
                             src={photo}
                             style={{ height: '100%', width: '100%', objectFit: 'cover', borderRadius: '50%' }}
+                            alt=""
                         />
                     )}
                     <label htmlFor="upload-photo">

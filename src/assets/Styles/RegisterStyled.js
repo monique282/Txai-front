@@ -43,7 +43,7 @@ export const UploadPhotoContainer = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #2a89ef;
+    background-color: #2d7575;
     width: 120px;
     height: 120px;
     border-radius: 50%;
@@ -137,7 +137,7 @@ export const FinishBack = styled.div`
 export const EnterRegister = styled.button`
     width: 15%; 
     height: 40px;
-    background-color: #579191;
+    background-color: #2d7575;
     border: none;
     color: #ffffff;
     border-radius: 5px;

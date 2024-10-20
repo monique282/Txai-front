@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const All = styled.div`
     width: 100%;
     height: 100vh;
-    background-color: #2f7171;
+    background-color: #2d7575;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -37,7 +37,7 @@ export const Welcome = styled.p`
 export const EnterButton = styled.button`
     width: 100%; 
     height: 40px;
-    background-color: #579191;
+    background-color: #2d7575;
     border: none;
     color: #ffffff;
     border-radius: 5px;
