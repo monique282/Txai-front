@@ -13,15 +13,29 @@ import { RiDeleteBin6Fill } from "react-icons/ri";
 import { FaGear } from "react-icons/fa6";
 import PaginationHome from "../components/Pagination";
 import Footer from "../assets/images/footer.png"
-
+import ModalDete from "../components/ModalDelete"
+import confirmDelete from "../components/ConfirmDelete";
 
 export default function Home() {
-    const { list } = useContext(AuthContext);
+    const { list, id, token, setList } = useContext(AuthContext);
     const [currentPage, setCurrentPage] = useState(1);
+    const [itemToDelete, setItemToDelete] = useState(null);
+    const [showModal, setShowModal] = useState(false);
+
     const itemsPerPage = 10;
     const indexOfLastItem = currentPage * itemsPerPage;
     const indexOfFirstItem = indexOfLastItem - itemsPerPage;
     const currentItems = list.slice(indexOfFirstItem, indexOfLastItem);
+
+    const handleDeleteClick = (item) => {
+        setItemToDelete(item); 
+        setShowModal(true);
+    };
+
+    const cancelDelete = () => {
+        setShowModal(false); 
+        setItemToDelete(null); 
+    };
 
     return (
         <All>
@@ -60,8 +74,15 @@ export default function Home() {
                                 <td>{FormatToReal(item.value * item.amount)}</td>
                                 <td>
                                     <ConfigurationRecycleBin>
-                                        <FaGear style={{ color: "black", marginRight: "20px" }} />
-                                        <RiDeleteBin6Fill style={{ color: "red" }} />
+                                        {item.userId === id && (
+                                            <>
+                                                <FaGear style={{ color: "black", marginRight: "20px" }} />
+                                                <RiDeleteBin6Fill
+                                                    style={{ color: "red", cursor: "pointer" }}
+                                                    onClick={() => handleDeleteClick(item.id)}
+                                                />
+                                            </>
+                                        )}
                                     </ConfigurationRecycleBin>
                                 </td>
                             </tr>
@@ -69,12 +90,18 @@ export default function Home() {
                     </tbody>
                 </table>
             </Box3>
+            {showModal && (
+                <ModalDete
+                    message="Tem certeza que deseja deletar este item?"
+                    onConfirm={() => confirmDelete({ itemToDelete, token, setShowModal, setItemToDelete, setList })}
+                    onCancel={() => cancelDelete({})} >
+                </ModalDete>
+            )}
             <QuantityPages>
-                <PaginationHome currentPage={currentPage} setCurrentPage={setCurrentPage}/>
+                <PaginationHome currentPage={currentPage} setCurrentPage={setCurrentPage} />
             </QuantityPages>
-            
             <Baseboard>
-            <img src={Footer} alt=""/>
+                <img src={Footer} alt="" />
             </Baseboard>
         </All>
     );
