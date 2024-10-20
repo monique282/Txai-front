@@ -58,7 +58,6 @@ export default function Login() {
             if (!response || !response.data || response.data.length === 0) {
                 alert("Ocorreu um erro ao tentar buscar os produtos. monique");
             } else{
-                console.log("aqui",response)
                 setList(response.data)
             }
         } catch (err) {
