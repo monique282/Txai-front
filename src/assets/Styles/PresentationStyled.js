@@ -37,7 +37,7 @@ export const Welcome = styled.p`
 export const EnterButton = styled.button`
     width: 100%; 
     height: 40px;
-    background-color: #2d7575;
+    background-color: #579191;
     border: none;
     color: #ffffff;
     border-radius: 5px;

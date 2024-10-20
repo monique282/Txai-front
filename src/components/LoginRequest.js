@@ -13,7 +13,7 @@ export default async function handleLoginClick({cpf, password, setToken, remembe
         setName(response.data[0].nameUser);
         setId(response.data[0].id);
         getAllBooks(setList);
-        navigate("/");
+        navigate("/home");
     } catch (err) {
         if (err.response) {
             alert(err.response.data.message);
