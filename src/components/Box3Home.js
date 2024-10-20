@@ -5,7 +5,7 @@ import FormatToReal from "./FormatToReal";
 import { RiDeleteBin6Fill } from "react-icons/ri";
 
 export default function Box3Home({currentItems, handleGearClick, handleDeleteClick, id}) {
-  
+    
     return (
             <Box3>
                 <table>
@@ -28,7 +28,7 @@ export default function Box3Home({currentItems, handleGearClick, handleDeleteCli
                                 <td>{FormatToReal(item.value * item.amount)}</td>
                                 <td>
                                     <ConfigurationRecycleBin>
-                                        {item.userId === id && (
+                                        {parseInt(item.userId) === parseInt(id) && (
                                             <>
                                                 <FaGear style={{ color: "black", marginRight: "20px" }}
                                                     onClick={() => handleGearClick(item)}

@@ -1,16 +1,11 @@
 import {
     All, HomeManagementControl, TitleControl, Baseboard,
-    RegisterProduct, ConfigurationRecycleBin, Box3,
-    QuantityPages
+    RegisterProduct, QuantityPages
 } from "../assets/Styles/HomeStyled";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../contex/authContex";
-import DayAndMonthAndYear from "../components/DayAndMonthAndYear";
-import FormatToReal from "../components/FormatToReal";
 import Box1Home from "../components/Box1Home";
 import Box2Home from "../components/Box2Home";
-import { RiDeleteBin6Fill } from "react-icons/ri";
-import { FaGear } from "react-icons/fa6";
 import PaginationHome from "../components/Pagination";
 import Footer from "../assets/images/footer.png"
 import ModalDete from "../components/ModalDelete"
@@ -18,9 +13,10 @@ import confirmDelete from "../components/ConfirmDelete";
 import ManageProducts from "../components/ManageProducts";
 import Box3Home from "../components/Box3Home";
 import NewProduct from "../components/NewProduct";
+import getAllBooks from "../components/AllBooks";
 
 export default function Home() {
-    const { list, id, token, setList } = useContext(AuthContext);
+    const { list, id, token, setList, setToken , setId, setName} = useContext(AuthContext);
     const [currentPage, setCurrentPage] = useState(1);
     const [itemToDelete, setItemToDelete] = useState(null);
     const [showModalDelete, setShowModalDelete] = useState(false);
@@ -31,6 +27,22 @@ export default function Home() {
     const indexOfLastItem = currentPage * itemsPerPage;
     const indexOfFirstItem = indexOfLastItem - itemsPerPage;
     const currentItems = list.slice(indexOfFirstItem, indexOfLastItem);
+
+    useEffect(() => {
+        const storedToken = localStorage.getItem('token');
+        const storedId = localStorage.getItem('id');
+        const storedUserName = localStorage.getItem('nameUser');
+
+        if (storedToken && storedId && storedUserName) {
+            setToken(storedToken);
+            setId(storedId);
+            setName(storedUserName);
+        } else {
+            console.log("Dados de autenticação não encontrados no localStorage");
+        }
+        getAllBooks(setList);
+    }, []);
+    console.log(id)
 
     // abir a lixeira
     const handleDeleteClick = (item) => {

@@ -1,9 +1,8 @@
 import { useContext, useEffect, useState } from "react";
 import { All, WelcomeLogoButton, Title, CpfSenha, InputCpfSenha, RememberForgot, Label, NoRegistrationIf, PrivacyPolicy, EnterButton } from "../assets/Styles/LoginStyled";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
 import { AuthContext } from "../contex/authContex";
-import getAllBooks from "../components/AllBooks";
+import handleLoginClick from "../components/LoginRequest";
 
 export default function Login() {
     const [cpf, setCpf] = useState('');
@@ -23,38 +22,11 @@ export default function Login() {
             setRemember(true);
         }
     }, [setCpf, setPassword, setRemember]);
-
-    const handleLoginClick = async () => {
-        const urlRequest = `${process.env.REACT_APP_API_URL}/user`;
-        const data = { cpf, password };
-        try {
-            const response = await axios.post(urlRequest, data);
-            if (remember) {
-                localStorage.setItem('cpf', cpf);
-                localStorage.setItem('password', password);
-                localStorage.setItem('remember', 'true');
-            } else {
-                localStorage.removeItem('cpf');
-                localStorage.removeItem('password');
-                localStorage.removeItem('remember');
-            }
-
-            setToken(response.data[1].token)
-            setName(response.data[0].nameUser)
-            setId(response.data[0].id)
-            getAllBooks(setList)
-            navigate("/");
-        } catch (err) {
-            if (err.response) {
-                alert(err.response.data.message);
-            } else {
-                alert("Ocorreu um erro ao tentar fazer o login.");
-            }
-        }
-    };
-
     const rememberChange = () => {
         setRemember(!remember);
+    };
+    const handleClick = () => {
+        handleLoginClick({cpf, password, setToken, remember, setName, setId, navigate, setList})
     };
 
     return (
@@ -80,7 +52,7 @@ export default function Login() {
                     onChange={(e) => setPassword(e.target.value)}
                 />
                 <EnterButton onClick={async () => {
-                    handleLoginClick();
+                    handleClick()
                 }}>Entrar</EnterButton>
                 <RememberForgot>
                     <Label>
