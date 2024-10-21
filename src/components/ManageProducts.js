@@ -66,6 +66,7 @@ const ManageProducts = ({ item, onClose, token , setList}) => {
               <Input
                 style={{ width: "25px", height: "17px", marginBottom: "0px", borderRadius: "0px", border: "1px solid #2d7575", borderRight: "none", borderLeft: "none", textAlign: "center" }}
                 value={quantity}
+                type='nummber'
                 onChange={(e) => setQuantity(Number(e.target.value))}
               />
               <QuantityButton

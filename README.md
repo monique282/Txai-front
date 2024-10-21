@@ -1,70 +1,92 @@
-# Getting Started with Create React App
+# Front-end Imóvel Guide
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is a Front-end Technical Test. It is intended to demonstrate skills.
 
-## Available Scripts
+## Challenge
 
-In the project directory, you can run:
+The Front-End Technical Test consists of building: an initial screen with the company logo, secondly, a login screen, where you have the option to login or register, the registration screen has all the information that is required and on the home screen it shows all items and those included by the user can be modified or deleted
 
-### `npm start`
+### Technologies used
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- `JavaScript`
+- `Styled Components`
+- `axios`
+- `react`
+- `react-icons`
+- `@testing-library/jest-dom`
+- `@testing-library/react`
+- `react-dom`
+- `react-router-dom`
+- `react-scripts`
+- `web-vitals`
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
 
-### `npm test`
+NPM package management was used.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Layout Components
 
-### `npm run build`
+The first box contains the following information:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- Enter button
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
+![Search Boxes](https://imgur.com/CecGbCC.png)
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+When you click on enter you will be taken to the login screen
+- Enter CPF, To be an accepted CPF it must contain 11 digits
+- Password 
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+![Search Boxes](https://imgur.com/A64LQ6T.png)
+ 
+You may not have a username and click register. The screen is made up of:
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+- Full name
+- CPF
+- E-mail
+- Username
+- Password
+- Confirm password
+- Position
 
-## Learn More
+![Search Boxes](https://imgur.com/9lA3SnK.png)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+After registering you will be directed to the login screen after logging in you will go to the items screen
 
-### Code Splitting
+![Search Boxes](https://imgur.com/8s7AJ7R.png)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
 
-### Analyzing the Bundle Size
+On the items screen you can register a new product, which has the fields to be filled in
+- Date
+- Product name
+- Amount
+- Value
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+![Search Boxes](https://imgur.com/4NPwOmV.png)
 
-### Making a Progressive Web App
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+When you close or complete the registration for the new product, the screen is updated and you can modify any product you have placed, how to delete
 
-### Advanced Configuration
+![Search Boxes](https://imgur.com/OpZ1mru.png)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+or even modify some information
 
-### Deployment
+![Search Boxes](https://imgur.com/3C0AN6j.png)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+### Commands to Run the Project
 
-### `npm run build` fails to minify
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+To use a mock API and to access the data that will feed the project and run it, do the following:
+
+1. Clone this GitHub repository to your machine: [https://github.com/monique282/Txai-front](https://github.com/monique282/Imovel-Guide);
+2. In another terminal, run the `npm install` command to install all libraries.
+5. Use the .env.example file to create the .env .
+6. Run the `npm run start` command to run the project. This command provides a link that you can open in your browser to interact with the project.
+
+```
+Remembering, all the commands above must be given in the folder that corresponds to the project.
+For the complete project to work you need Bsck-end too, which is in the repository [https://github.com/monique282/Txai-Back]
+
+```

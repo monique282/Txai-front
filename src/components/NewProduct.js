@@ -30,7 +30,7 @@ const NewProduct = ({ id, token, setList , onClose}) => {
     <Overlay>
       <Container>
         <AiOutlineCloseTitle>
-          <Title>Gerenciar produto</Title>
+          <Title>Cadastrar novo produto</Title>
           <AiOutlineClose onClick={onClose} />
         </AiOutlineCloseTitle>
 

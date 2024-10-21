@@ -42,7 +42,6 @@ export default function Home() {
         }
         getAllBooks(setList);
     }, []);
-    console.log(id)
 
     // abir a lixeira
     const handleDeleteClick = (item) => {

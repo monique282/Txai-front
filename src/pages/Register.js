@@ -41,11 +41,12 @@ export default function Register() {
             }
             try {
                 const urlRequest = `${process.env.REACT_APP_API_URL}/register`;
+                
                 const data = {
                     name, cpf, email, nameUser, password,
-                    administrator: administrator,
-                    photo: photo ? photo : null
+                    administrator: administrator
                 }
+            
                 const response = await axios.post(urlRequest, data);
                 if (response.status !== 201) {
                     throw new Error('Erro ao registrar');
@@ -59,7 +60,7 @@ export default function Register() {
                 setNamePosition('')
                 setAdministrator(false)
                 setPhoto('');
-                navigate("/");
+                navigate("/login");
             } catch (error) {
                 const errorMessage = error.response ? error.response.data.message : "Erro desconhecido. Tente novamente mais tarde.";
                 alert(errorMessage);
