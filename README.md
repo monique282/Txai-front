@@ -87,6 +87,6 @@ To use a mock API and to access the data that will feed the project and run it, 
 
 ```
 Remembering, all the commands above must be given in the folder that corresponds to the project.
-For the complete project to work you need Bsck-end too, which is in the repository [https://github.com/monique282/Txai-Back]
+For the complete project to work you need Back-end too, which is in the repository https://github.com/monique282/Txai-Back
 
 ```
